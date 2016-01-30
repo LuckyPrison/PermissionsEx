@@ -1,14 +1,22 @@
 package ru.tehkode.permissions.backends.file;
 
+import com.google.common.collect.ImmutableList;
+import org.apache.commons.pool.impl.GenericKeyedObjectPool;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.configuration.file.YamlRepresenter;
+import org.yaml.snakeyaml.DumperOptions;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class FileConfig extends YamlConfiguration {
 	private final List<String> lowerCaseSections;
@@ -87,11 +95,35 @@ public class FileConfig extends YamlConfiguration {
 
 	@Override
 	public String saveToString() {
+		Map<String, ?> cloned;
 		synchronized (lock) {
-			return super.saveToString();
+			cloned = clone(this);
 		}
+		DumperOptions dumperOptions = new DumperOptions();
+		YamlRepresenter representer = new YamlRepresenter();
+		Yaml yaml = new Yaml(representer, dumperOptions);
+
+		dumperOptions.setIndent(this.options().indent());
+		dumperOptions.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+		dumperOptions.setAllowUnicode(SYSTEM_UTF);
+		representer.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+
+		return yaml.dump(cloned);
 	}
 
+	private static Map<String, ?> clone(ConfigurationSection section) {
+		Map<String, Object> clone = new LinkedHashMap<>();
+		for (Map.Entry<String, ?> entry : section.getValues(false).entrySet()) {
+			if (entry.getValue() instanceof List) {
+				clone.put(entry.getKey(), ImmutableList.copyOf((Iterable<?>) entry.getValue()));
+			} else if (entry.getValue() instanceof ConfigurationSection) {
+				clone.put(entry.getKey(), clone(((ConfigurationSection) entry.getValue())));
+			} else {
+				clone.put(entry.getKey(), entry.getValue());
+			}
+		}
+		return clone;
+	}
 	public boolean isLowerCased(String basePath) {
 		return lowerCaseSections.contains(basePath);
 	}
