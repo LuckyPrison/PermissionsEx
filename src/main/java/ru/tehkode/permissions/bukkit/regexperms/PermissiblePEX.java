@@ -72,7 +72,6 @@ public class PermissiblePEX extends PermissibleBase {
 	protected final PermissionsEx plugin;
 	private Permissible previousPermissible = null;
 	protected final Map<String, PermissionCheckResult> cache = new ConcurrentHashMap<>();
-	private final Object permissionsLock = new Object();
 
 	@SuppressWarnings("unchecked")
 	public PermissiblePEX(Player player, PermissionsEx plugin) {
@@ -170,18 +169,16 @@ public class PermissiblePEX extends PermissibleBase {
 	@Override
 	public void recalculatePermissions() {
 		if (cache != null && permissions != null && attachments != null) {
-			synchronized (permissionsLock) {
-				clearPermissions();
-				cache.clear();
-				for (ListIterator<PermissionAttachment> it = this.attachments.listIterator(this.attachments.size()); it.hasPrevious(); ) {
-					PermissionAttachment attach = it.previous();
-					calculateChildPerms(attach.getPermissions(), false, attach);
-				}
+			clearPermissions();
+			cache.clear();
+			for (ListIterator<PermissionAttachment> it = this.attachments.listIterator(this.attachments.size()); it.hasPrevious(); ) {
+				PermissionAttachment attach = it.previous();
+				calculateChildPerms(attach.getPermissions(), false, attach);
+			}
 
-				for (Permission p : player.getServer().getPluginManager().getDefaultPermissions(isOp())) {
-					this.permissions.put(p.getName(), new PermissionAttachmentInfo(player, p.getName(), null, true));
-					calculateChildPerms(p.getChildren(), false, null);
-				}
+			for (Permission p : player.getServer().getPluginManager().getDefaultPermissions(isOp())) {
+				this.permissions.put(p.getName(), new PermissionAttachmentInfo(player, p.getName(), null, true));
+				calculateChildPerms(p.getChildren(), false, null);
 			}
 		}
 	}
@@ -204,9 +201,7 @@ public class PermissiblePEX extends PermissibleBase {
 
 	@Override
 	public Set<PermissionAttachmentInfo> getEffectivePermissions() {
-		synchronized (permissionsLock) {
-			return new LinkedHashSet<>(permissions.values());
-		}
+		return new LinkedHashSet<>(permissions.values());
 	}
 
 	private PermissionCheckResult checkSingle(String expression, String permission, boolean value) {
@@ -236,11 +231,9 @@ public class PermissiblePEX extends PermissibleBase {
 
 			res = PermissionCheckResult.UNDEFINED;
 
-			synchronized (permissionsLock) {
-				for (PermissionAttachmentInfo pai : permissions.values()) {
-					if ((res = checkSingle(pai.getPermission(), permission, pai.getValue())) != PermissionCheckResult.UNDEFINED) {
-						break;
-					}
+			for (PermissionAttachmentInfo pai : permissions.values()) {
+				if ((res = checkSingle(pai.getPermission(), permission, pai.getValue())) != PermissionCheckResult.UNDEFINED) {
+					break;
 				}
 			}
 			if (res == PermissionCheckResult.UNDEFINED) {
