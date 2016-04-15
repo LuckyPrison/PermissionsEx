@@ -23,8 +23,6 @@ public class PermissionsExConfig {
 	private final boolean logPlayers;
 	private final boolean createUserRecords;
 	private final String defaultBackend;
-	private final boolean updaterEnabled;
-	private final boolean alwaysUpdate;
 	private final boolean informPlayers;
 	private final List<String> serverTags;
 	private final String basedir;
@@ -40,8 +38,6 @@ public class PermissionsExConfig {
 		this.logPlayers = getBoolean("permissions.log-players", false);
 		this.createUserRecords = getBoolean("permissions.createUserRecords", false);
 		this.defaultBackend = getString("permissions.backend", PermissionBackend.DEFAULT_BACKEND);
-		this.updaterEnabled = getBoolean("updater", true);
-		this.alwaysUpdate = getBoolean("alwaysUpdate", false);
 		this.informPlayers = getBoolean("permissions.informplayers.changes", false);
 		this.basedir = getString("permissions.basedir", "plugins/PermissionsEx");
 	}
@@ -97,14 +93,6 @@ public class PermissionsExConfig {
 
 	public boolean createUserRecords() {
 		return createUserRecords;
-	}
-
-	public boolean updaterEnabled() {
-		return updaterEnabled;
-	}
-
-	public boolean alwaysUpdate() {
-		return alwaysUpdate;
 	}
 
 	public boolean informPlayers() {

@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ru.tehkode</groupId>
     <artifactId>PermissionsEx</artifactId>
-    <version>1.23.5-SNAPSHOT</version>
+    <version>1.23.6-SNAPSHOT</version>
     <name>PermissionsEx</name>
     <url>https://github.com/PEXPlugins/PermissionsEx</url>
     <properties>
@@ -56,10 +56,6 @@
                   <createDependencyReducedPom>false</createDependencyReducedPom>
                   <relocations>
                     <relocation>
-                      <pattern>net.gravitydevelopment.updater</pattern>
-                      <shadedPattern>ru.tehkode.libs.net.gravitydevelopment.updater</shadedPattern>
-                    </relocation>
-                    <relocation>
                       <pattern>org.apache</pattern>
                       <shadedPattern>ru.tehkode.libs.org.apache</shadedPattern>
                       <excludes>
@@ -112,11 +108,6 @@
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
             <version>1.4</version>
-        </dependency>
-        <dependency>
-            <groupId>net.gravitydevelopment.updater</groupId>
-            <artifactId>updater</artifactId>
-            <version>2.3</version>
         </dependency>
       <dependency>
         <groupId>com.mojang</groupId>
