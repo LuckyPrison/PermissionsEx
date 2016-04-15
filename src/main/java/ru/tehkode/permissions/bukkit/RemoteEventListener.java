@@ -1,9 +1,11 @@
 package ru.tehkode.permissions.bukkit;
 
-import com.zachsthings.netevents.NetEventsPlugin;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+
+import com.zachsthings.netevents.NetEventsPlugin;
+
 import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.PermissionManager;
 import ru.tehkode.permissions.PermissionUser;

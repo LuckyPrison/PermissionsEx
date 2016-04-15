@@ -18,23 +18,8 @@
  */
 package ru.tehkode.permissions.bukkit.regexperms;
 
-import org.apache.commons.lang.Validate;
-import org.bukkit.entity.Player;
-import org.bukkit.permissions.Permissible;
-import org.bukkit.permissions.PermissibleBase;
-import org.bukkit.permissions.Permission;
-import org.bukkit.permissions.PermissionAttachment;
-import org.bukkit.permissions.PermissionAttachmentInfo;
-import ru.tehkode.permissions.PermissionCheckResult;
-import ru.tehkode.permissions.PermissionMatcher;
-import ru.tehkode.permissions.PermissionUser;
-import ru.tehkode.permissions.bukkit.ErrorReport;
-import ru.tehkode.permissions.bukkit.PermissionsEx;
-import ru.tehkode.utils.FieldReplacer;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.ListIterator;
@@ -42,6 +27,22 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import org.apache.commons.lang.Validate;
+import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permissible;
+import org.bukkit.permissions.PermissibleBase;
+import org.bukkit.permissions.Permission;
+import org.bukkit.permissions.PermissionAttachment;
+import org.bukkit.permissions.PermissionAttachmentInfo;
+
+import com.google.common.collect.Maps;
+
+import ru.tehkode.permissions.PermissionCheckResult;
+import ru.tehkode.permissions.PermissionMatcher;
+import ru.tehkode.permissions.bukkit.ErrorReport;
+import ru.tehkode.permissions.bukkit.PermissionsEx;
+import ru.tehkode.utils.FieldReplacer;
 
 /**
  * Implements regex-based permission matching for superperms.
@@ -72,31 +73,14 @@ public class PermissiblePEX extends PermissibleBase {
 	protected final PermissionsEx plugin;
 	private Permissible previousPermissible = null;
 	protected final Map<String, PermissionCheckResult> cache = new ConcurrentHashMap<>();
-	private final Object permissionsLock = new Object();
+	//private final Object permissionsLock = new Object();
 
 	@SuppressWarnings("unchecked")
 	public PermissiblePEX(Player player, PermissionsEx plugin) {
 		super(player);
 		this.player = player;
 		this.plugin = plugin;
-		permissions = new LinkedHashMap<String, PermissionAttachmentInfo>() {
-			/**
-			 * Customized put() useable ONLY for this permissible. It's pretty weird otherwise.
-			 * It'd be better as a putIfAbsent, but it needs to be called from the superclass so it's not.
-			 *
-			 * @param k The key
-			 * @param v The value
-			 * @return The previous/existing permission at this location
-			 */
-			@Override
-			public PermissionAttachmentInfo put(String k, PermissionAttachmentInfo v) {
-				PermissionAttachmentInfo existing = this.get(k);
-				if (existing != null) {
-					return existing;
-				}
-				return super.put(k, v);
-			}
-		};
+		permissions = Maps.newConcurrentMap();
 		PERMISSIONS_FIELD.set(this, permissions);
 		this.attachments = ATTACHMENTS_FIELD.get(this);
 		recalculatePermissions();
@@ -170,7 +154,7 @@ public class PermissiblePEX extends PermissibleBase {
 	@Override
 	public void recalculatePermissions() {
 		if (cache != null && permissions != null && attachments != null) {
-			synchronized (permissionsLock) {
+			//synchronized (permissionsLock) {
 				clearPermissions();
 				cache.clear();
 				for (ListIterator<PermissionAttachment> it = this.attachments.listIterator(this.attachments.size()); it.hasPrevious(); ) {
@@ -179,10 +163,10 @@ public class PermissiblePEX extends PermissibleBase {
 				}
 
 				for (Permission p : player.getServer().getPluginManager().getDefaultPermissions(isOp())) {
-					this.permissions.put(p.getName(), new PermissionAttachmentInfo(player, p.getName(), null, true));
+					this.permissions.putIfAbsent(p.getName(), new PermissionAttachmentInfo(player, p.getName(), null, true));
 					calculateChildPerms(p.getChildren(), false, null);
 				}
-			}
+			//}
 		}
 	}
 
@@ -204,9 +188,9 @@ public class PermissiblePEX extends PermissibleBase {
 
 	@Override
 	public Set<PermissionAttachmentInfo> getEffectivePermissions() {
-		synchronized (permissionsLock) {
+		//synchronized (permissionsLock) {
 			return new LinkedHashSet<>(permissions.values());
-		}
+		//}
 	}
 
 	private PermissionCheckResult checkSingle(String expression, String permission, boolean value) {
@@ -236,13 +220,13 @@ public class PermissiblePEX extends PermissibleBase {
 
 			res = PermissionCheckResult.UNDEFINED;
 
-			synchronized (permissionsLock) {
+			//synchronized (permissionsLock) {
 				for (PermissionAttachmentInfo pai : permissions.values()) {
 					if ((res = checkSingle(pai.getPermission(), permission, pai.getValue())) != PermissionCheckResult.UNDEFINED) {
 						break;
 					}
 				}
-			}
+			//}
 			if (res == PermissionCheckResult.UNDEFINED) {
 				for (Map.Entry<String, Boolean> ent : plugin.getRegexPerms().getPermissionList().getParents(permission)) {
 					if ((res = permissionValue(ent.getKey())) != PermissionCheckResult.UNDEFINED) {

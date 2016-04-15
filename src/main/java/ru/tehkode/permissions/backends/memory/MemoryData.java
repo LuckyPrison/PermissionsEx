@@ -1,14 +1,15 @@
 package ru.tehkode.permissions.backends.memory;
 
-import com.google.common.collect.Sets;
-import ru.tehkode.permissions.PermissionsGroupData;
-import ru.tehkode.permissions.PermissionsUserData;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import com.google.common.collect.Sets;
+
+import ru.tehkode.permissions.PermissionsGroupData;
+import ru.tehkode.permissions.PermissionsUserData;
 
 /**
  * Data for in-memory permissions

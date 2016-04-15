@@ -18,9 +18,9 @@
  */
 package ru.tehkode.permissions.events;
 
-import org.bukkit.event.HandlerList;
-
 import java.util.UUID;
+
+import org.bukkit.event.HandlerList;
 
 /**
  * @author t3hk0d3

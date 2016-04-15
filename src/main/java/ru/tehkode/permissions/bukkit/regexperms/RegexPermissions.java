@@ -1,5 +1,9 @@
 package ru.tehkode.permissions.bukkit.regexperms;
 
+import static ru.tehkode.permissions.bukkit.CraftBukkitInterface.getCBClassName;
+
+import java.util.logging.Level;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -7,13 +11,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.permissions.Permissible;
+
 import ru.tehkode.permissions.PermissionManager;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 import ru.tehkode.permissions.events.PermissionSystemEvent;
-
-import java.util.logging.Level;
-
-import static ru.tehkode.permissions.bukkit.CraftBukkitInterface.getCBClassName;
 
 /**
  * @author zml2008

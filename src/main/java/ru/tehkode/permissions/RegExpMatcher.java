@@ -1,14 +1,14 @@
 package ru.tehkode.permissions;
 
+import java.util.concurrent.ExecutionException;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import ru.tehkode.permissions.bukkit.ErrorReport;
 
-import java.util.concurrent.ExecutionException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
+import ru.tehkode.permissions.bukkit.ErrorReport;
 
 public class RegExpMatcher implements PermissionMatcher {
 	public static final String RAW_REGEX_CHAR = "$";

@@ -1,12 +1,5 @@
 package ru.tehkode.permissions.bukkit.regexperms;
 
-import com.google.common.collect.Sets;
-import org.bukkit.entity.Player;
-import org.bukkit.permissions.Permissible;
-import org.bukkit.plugin.PluginManager;
-import ru.tehkode.permissions.bukkit.PermissionsEx;
-import ru.tehkode.utils.FieldReplacer;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,6 +7,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.concurrent.atomic.AtomicReference;
+
+import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permissible;
+import org.bukkit.plugin.PluginManager;
+
+import com.google.common.collect.Sets;
+
+import ru.tehkode.permissions.bukkit.PermissionsEx;
+import ru.tehkode.utils.FieldReplacer;
 
 /**
  * PermissibleMap for the permissions subscriptions data in Bukkit's {@link PluginManager} so we can put in our own data too.

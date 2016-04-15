@@ -1,12 +1,12 @@
 package ru.tehkode.permissions.bukkit.regexperms;
 
-import org.bukkit.entity.Player;
-import org.bukkit.permissions.Permissible;
-import org.bukkit.permissions.PermissibleBase;
-
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.logging.Logger;
+
+import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permissible;
+import org.bukkit.permissions.PermissibleBase;
 
 /**
  * This class handles injection of {@link Permissible}s into {@link Player}s for various server implementations.

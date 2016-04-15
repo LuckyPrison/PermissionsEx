@@ -18,9 +18,13 @@
  */
 package ru.tehkode.permissions;
 
-import ru.tehkode.permissions.events.PermissionEntityEvent;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import java.util.*;
+import ru.tehkode.permissions.events.PermissionEntityEvent;
 
 /**
  * @author t3hk0d3

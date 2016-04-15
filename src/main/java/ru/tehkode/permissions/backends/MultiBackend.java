@@ -1,12 +1,5 @@
 package ru.tehkode.permissions.backends;
 
-import org.bukkit.configuration.ConfigurationSection;
-import org.json.simple.JSONObject;
-import ru.tehkode.permissions.PermissionManager;
-import ru.tehkode.permissions.PermissionsGroupData;
-import ru.tehkode.permissions.PermissionsUserData;
-import ru.tehkode.permissions.exceptions.PermissionBackendException;
-
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -18,6 +11,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.bukkit.configuration.ConfigurationSection;
+import org.json.simple.JSONObject;
+
+import ru.tehkode.permissions.PermissionManager;
+import ru.tehkode.permissions.PermissionsGroupData;
+import ru.tehkode.permissions.PermissionsUserData;
+import ru.tehkode.permissions.exceptions.PermissionBackendException;
 
 
 /**

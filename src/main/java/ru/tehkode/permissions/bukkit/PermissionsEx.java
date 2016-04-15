@@ -24,9 +24,6 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 
-import com.google.common.cache.CacheBuilder;
-import com.zachsthings.netevents.NetEventsPlugin;
-import net.gravitydevelopment.updater.Updater;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -43,6 +40,11 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginLogger;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import com.google.common.cache.CacheBuilder;
+import com.zachsthings.netevents.NetEventsPlugin;
+
+import net.gravitydevelopment.updater.Updater;
 import ru.tehkode.permissions.NativeInterface;
 import ru.tehkode.permissions.PermissionManager;
 import ru.tehkode.permissions.PermissionUser;
@@ -51,7 +53,11 @@ import ru.tehkode.permissions.backends.PermissionBackend;
 import ru.tehkode.permissions.backends.file.FileBackend;
 import ru.tehkode.permissions.backends.memory.MemoryBackend;
 import ru.tehkode.permissions.backends.sql.SQLBackend;
-import ru.tehkode.permissions.bukkit.commands.*;
+import ru.tehkode.permissions.bukkit.commands.GroupCommands;
+import ru.tehkode.permissions.bukkit.commands.PromotionCommands;
+import ru.tehkode.permissions.bukkit.commands.UserCommands;
+import ru.tehkode.permissions.bukkit.commands.UtilityCommands;
+import ru.tehkode.permissions.bukkit.commands.WorldCommands;
 import ru.tehkode.permissions.bukkit.regexperms.RegexPermissions;
 import ru.tehkode.permissions.commands.CommandsManager;
 import ru.tehkode.permissions.events.PermissionEvent;

@@ -1,8 +1,8 @@
 package ru.tehkode.permissions.backends.caching;
 
-import ru.tehkode.permissions.PermissionsUserData;
-
 import java.util.concurrent.Executor;
+
+import ru.tehkode.permissions.PermissionsUserData;
 
 /**
  * User data using a cache.

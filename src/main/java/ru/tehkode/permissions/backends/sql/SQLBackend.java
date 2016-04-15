@@ -18,20 +18,6 @@
  */
 package ru.tehkode.permissions.backends.sql;
 
-import com.google.common.collect.ImmutableSet;
-import org.apache.commons.dbcp.BasicDataSource;
-import org.bukkit.configuration.ConfigurationSection;
-import ru.tehkode.permissions.PermissionManager;
-import ru.tehkode.permissions.PermissionsData;
-import ru.tehkode.permissions.PermissionsGroupData;
-import ru.tehkode.permissions.PermissionsUserData;
-import ru.tehkode.permissions.backends.PermissionBackend;
-import ru.tehkode.permissions.backends.SchemaUpdate;
-import ru.tehkode.permissions.backends.caching.CachingGroupData;
-import ru.tehkode.permissions.backends.caching.CachingUserData;
-import ru.tehkode.permissions.exceptions.PermissionBackendException;
-import ru.tehkode.utils.StringUtils;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Writer;
@@ -48,6 +34,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
+
+import org.apache.commons.dbcp.BasicDataSource;
+import org.bukkit.configuration.ConfigurationSection;
+
+import com.google.common.collect.ImmutableSet;
+
+import ru.tehkode.permissions.PermissionManager;
+import ru.tehkode.permissions.PermissionsData;
+import ru.tehkode.permissions.PermissionsGroupData;
+import ru.tehkode.permissions.PermissionsUserData;
+import ru.tehkode.permissions.backends.PermissionBackend;
+import ru.tehkode.permissions.backends.SchemaUpdate;
+import ru.tehkode.permissions.backends.caching.CachingGroupData;
+import ru.tehkode.permissions.backends.caching.CachingUserData;
+import ru.tehkode.permissions.exceptions.PermissionBackendException;
+import ru.tehkode.utils.StringUtils;
 
 /**
  * @author code

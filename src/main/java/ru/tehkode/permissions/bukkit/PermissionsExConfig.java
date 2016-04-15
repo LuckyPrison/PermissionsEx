@@ -1,12 +1,13 @@
 package ru.tehkode.permissions.bukkit;
 
-import org.bukkit.configuration.Configuration;
-import org.bukkit.configuration.ConfigurationSection;
-import ru.tehkode.permissions.backends.PermissionBackend;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import org.bukkit.configuration.Configuration;
+import org.bukkit.configuration.ConfigurationSection;
+
+import ru.tehkode.permissions.backends.PermissionBackend;
 
 /**
  * @author zml2008

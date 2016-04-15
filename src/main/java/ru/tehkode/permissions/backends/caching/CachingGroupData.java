@@ -1,8 +1,8 @@
 package ru.tehkode.permissions.backends.caching;
 
-import ru.tehkode.permissions.PermissionsGroupData;
-
 import java.util.concurrent.Executor;
+
+import ru.tehkode.permissions.PermissionsGroupData;
 
 /**
  * Cached data for groups

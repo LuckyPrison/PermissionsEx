@@ -1,8 +1,8 @@
 package ru.tehkode.permissions;
 
-import ru.tehkode.permissions.events.PermissionEvent;
-
 import java.util.UUID;
+
+import ru.tehkode.permissions.events.PermissionEvent;
 
 /**
  * Various mappings for UUID handling

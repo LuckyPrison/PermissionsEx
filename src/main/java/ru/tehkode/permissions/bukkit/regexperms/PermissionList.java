@@ -1,18 +1,20 @@
 package ru.tehkode.permissions.bukkit.regexperms;
 
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
-import org.bukkit.permissions.Permission;
-import org.bukkit.plugin.PluginManager;
-import ru.tehkode.utils.FieldReplacer;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import org.bukkit.permissions.Permission;
+import org.bukkit.plugin.PluginManager;
+
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multimaps;
+
+import ru.tehkode.utils.FieldReplacer;
 
 /**
  * @author zml2008

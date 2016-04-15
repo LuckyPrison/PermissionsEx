@@ -18,10 +18,10 @@
  */
 package ru.tehkode.permissions.events;
 
-import org.bukkit.event.Event;
-
 import java.io.Serializable;
 import java.util.UUID;
+
+import org.bukkit.event.Event;
 
 /**
  * @author t3hk0d3

@@ -1,13 +1,21 @@
 package ru.tehkode.permissions.backends.file;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+
 import org.bukkit.configuration.ConfigurationSection;
+
 import ru.tehkode.permissions.PermissionsGroupData;
 import ru.tehkode.permissions.PermissionsUserData;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
-
-import java.io.IOException;
-import java.util.*;
-import java.util.logging.Level;
 
 public class FileData implements PermissionsUserData, PermissionsGroupData {
 	protected transient final FileConfig config;

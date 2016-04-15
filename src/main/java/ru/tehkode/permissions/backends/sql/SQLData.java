@@ -1,8 +1,5 @@
 package ru.tehkode.permissions.backends.sql;
 
-import ru.tehkode.permissions.PermissionsGroupData;
-import ru.tehkode.permissions.PermissionsUserData;
-
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +12,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import ru.tehkode.permissions.PermissionsGroupData;
+import ru.tehkode.permissions.PermissionsUserData;
 
 /**
  * Data for SQL entities

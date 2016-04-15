@@ -18,24 +18,6 @@
  */
 package ru.tehkode.permissions.bukkit.commands;
 
-import com.google.common.collect.Iterables;
-import com.mojang.api.profiles.HttpProfileRepository;
-import com.mojang.api.profiles.Profile;
-import com.mojang.api.profiles.ProfileRepository;
-import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
-import ru.tehkode.permissions.PermissionsUserData;
-import ru.tehkode.permissions.backends.PermissionBackend;
-import ru.tehkode.permissions.PermissionManager;
-import ru.tehkode.permissions.bukkit.ErrorReport;
-import ru.tehkode.permissions.bukkit.PermissionsEx;
-import ru.tehkode.permissions.commands.Command;
-import ru.tehkode.permissions.commands.CommandsManager.CommandBinding;
-import ru.tehkode.permissions.exceptions.PermissionBackendException;
-
 import java.io.File;
 import java.util.Collection;
 import java.util.HashSet;
@@ -46,6 +28,25 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
+
+import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
+
+import com.google.common.collect.Iterables;
+import com.mojang.api.profiles.HttpProfileRepository;
+import com.mojang.api.profiles.Profile;
+import com.mojang.api.profiles.ProfileRepository;
+
+import ru.tehkode.permissions.PermissionManager;
+import ru.tehkode.permissions.PermissionsUserData;
+import ru.tehkode.permissions.backends.PermissionBackend;
+import ru.tehkode.permissions.bukkit.ErrorReport;
+import ru.tehkode.permissions.bukkit.PermissionsEx;
+import ru.tehkode.permissions.commands.Command;
+import ru.tehkode.permissions.commands.CommandsManager.CommandBinding;
+import ru.tehkode.permissions.exceptions.PermissionBackendException;
 
 public class UtilityCommands extends PermissionsCommand {
 

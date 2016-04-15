@@ -1,11 +1,11 @@
 package ru.tehkode.permissions.backends;
 
+import java.util.List;
+import java.util.Map;
+
 import ru.tehkode.permissions.PermissionsData;
 import ru.tehkode.permissions.PermissionsGroupData;
 import ru.tehkode.permissions.PermissionsUserData;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Helper class to hold static methods relating to import/export between backends.
